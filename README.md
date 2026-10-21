@@ -4,7 +4,7 @@ Aplicação estática de registo de ponto por QR code, com autenticação Supaba
 
 ## Preparação do Supabase
 
-O projeto Supabase associado é `turno-ponto`. O esquema já foi aplicado ao projeto associado nas migrações `secure_qr_attendance` e `qr_session_access_and_indexes`. Os respetivos ficheiros estão em `supabase/migrations` para manter o histórico do esquema no repositório. A aplicação antiga continua a funcionar; estas alterações preparam a base de dados para a nova versão.
+O esquema do projeto Supabase associado foi aplicado nas migrações `secure_qr_attendance`, `qr_session_access_and_indexes` e `allow_profile_name_update`. Os ficheiros estão em `supabase/migrations` para manter o histórico do esquema no repositório.
 
 Para uma instalação Supabase nova, execute uma vez o conteúdo de [supabase/setup.sql](supabase/setup.sql). O script cria as tabelas, ativa RLS e configura as funções usadas pela aplicação. Não o volte a executar num projeto onde as tabelas já existem; use o histórico de migrações em vez do script de preparação.
 
@@ -26,5 +26,3 @@ O site continua a ser servido como ficheiro estático. Use a raiz do repositóri
 ## Âmbito
 
 O QR é uma verificação de presença simples, não uma prova de localização nem um sistema de processamento salarial. A equipa deve definir as regras de utilização e retenção de dados adequadas ao seu contexto.
-
-
