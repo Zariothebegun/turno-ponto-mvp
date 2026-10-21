@@ -121,10 +121,10 @@ revoke all on public.organizations, public.profiles, public.attendance_events fr
 grant select on public.organizations, public.profiles, public.attendance_events to authenticated;
 revoke select on public.organizations from authenticated;
 grant select (id, name, owner_id, created_at) on public.organizations to authenticated;
-grant update (full_name) on public.profiles to authenticated;
 revoke insert, update, delete on public.organizations from anon, authenticated;
 revoke insert, update, delete on public.profiles from anon, authenticated;
 revoke insert, update, delete on public.attendance_events from anon, authenticated;
+grant update (full_name) on public.profiles to authenticated;
 revoke all on public.qr_sessions, public.qr_session_uses from anon, authenticated, public;
 
 create or replace function app_private.create_profile_for_auth_user()
