@@ -4,13 +4,12 @@ Aplicação estática de registo de ponto por QR code, com autenticação Supaba
 
 ## Preparação do Supabase
 
-O projeto Supabase associado é `turno-ponto`. Antes de publicar esta versão pela primeira vez:
+O projeto Supabase associado é `turno-ponto`. O esquema já foi aplicado ao projeto associado nas migrações `secure_qr_attendance` e `qr_session_access_and_indexes`. A aplicação antiga continua a funcionar; estas alterações preparam a base de dados para a nova versão.
 
-1. No SQL Editor do projeto, execute uma vez o conteúdo de [supabase/setup.sql](supabase/setup.sql). O script cria as tabelas, ativa RLS e configura as funções usadas pela aplicação.
-2. Em Authentication, mantenha o acesso por email e palavra-passe ativado. Configure o URL do site e os URLs de redirecionamento para o domínio Render.
-3. A chave `sb_publishable_...` e o URL do projeto aparecem em `index.html`. A chave é pública e só é segura porque o acesso às tabelas é limitado por RLS. Não coloque neste ficheiro uma chave `service_role` ou uma chave secreta.
+Para uma instalação Supabase nova, execute uma vez o conteúdo de [supabase/setup.sql](supabase/setup.sql). O script cria as tabelas, ativa RLS e configura as funções usadas pela aplicação. Não o volte a executar num projeto onde as tabelas já existem.
 
-O script de preparação é para executar uma vez numa base de dados vazia. Não volte a executá-lo depois de criar as tabelas.
+Em Authentication, mantenha o acesso por email e palavra-passe ativado. Configure o URL do site e os URLs de redirecionamento para o domínio Render.
+A chave `sb_publishable_...` e o URL do projeto aparecem em `index.html`. A chave é pública e só é segura porque o acesso às tabelas é limitado por RLS. Não coloque neste ficheiro uma chave `service_role` ou uma chave secreta.
 
 ## Publicação no Render
 
