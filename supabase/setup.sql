@@ -53,13 +53,19 @@ create table public.qr_session_uses (
 create index profiles_organization_idx on public.profiles (organization_id, full_name);
 create index attendance_org_time_idx on public.attendance_events (organization_id, recorded_at desc);
 create index attendance_profile_time_idx on public.attendance_events (profile_id, recorded_at desc);
-create index qr_sessions_expiry_idx on public.qr_sessions (expires_at);
+create index qr_sessions_organization_expiry_idx on public.qr_sessions (organization_id, expires_at);
+create index qr_sessions_created_by_idx on public.qr_sessions (created_by);
+create index qr_session_uses_profile_idx on public.qr_session_uses (profile_id);
 
 alter table public.organizations enable row level security;
 alter table public.profiles enable row level security;
 alter table public.attendance_events enable row level security;
 alter table public.qr_sessions enable row level security;
 alter table public.qr_session_uses enable row level security;
+
+create policy "QR session uses are never directly accessible"
+on public.qr_session_uses for all to authenticated
+using (false) with check (false);
 
 create or replace function app_private.is_org_member(target_org uuid)
 returns boolean
